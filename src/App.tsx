@@ -57,7 +57,7 @@ const App = () => {
     if (!eas || !schemaUID) return;
     const schemaEncoder = new SchemaEncoder(SCHEMA);
     const encodedData = schemaEncoder.encodeData([
-      { name: "personName", value: currentAddress, type: "string" },
+      { name: "personWallet", value: currentAddress, type: "string" },
       {
         name: "valueOfWork",
         value: attestationData.valueOfWork,
@@ -110,8 +110,8 @@ const App = () => {
       <h2>Sepolia Network</h2>
       <h2 style={{ textAlign: "center" }}>
         {!schemaUID
-          ? "Step 1: Greenpill Brasil registers a schema for their own reputation"
-          : "Step 2: Person creates attestation for credibility of Greenpill Brasil"}
+          ? "Step 1: Greenpill Brasil registers a schema to community driven reputation standard"
+          : "Step 2: People can create attestation to credibility of Greenpill Brasil"}
       </h2>
 
       {!schemaUID && (
@@ -121,7 +121,7 @@ const App = () => {
             <strong>Schema Name:</strong> {SCHEMA_DETAILS.schemaName}
           </div>
           <div>
-            <strong>Person Name:</strong> {SCHEMA_DETAILS.personName}
+            <strong>Person Wallet:</strong> {SCHEMA_DETAILS.personWallet}
           </div>
           <div>
             <strong>Value of Work:</strong> {SCHEMA_DETAILS.valueOfWork}
