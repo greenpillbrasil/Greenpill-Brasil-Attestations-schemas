@@ -20,7 +20,7 @@ const App = () => {
   const { eas, schemaRegistry, currentAddress } = useEAS();
   // schemaUID is set when Freelancer register's their own reputation schema
   const [schemaUID, setSchemaUID] = useState<string>(
-    ""
+    "0xfbc6df3c476cafb2f803dc298e0b31e42ed7f7d7c81443fad8779ddd401f496d"
   );
   // attestationUID is set when a client attests to the reputation schema
   const [attestationUID, setAttestationUID] = useState<string>(
@@ -110,7 +110,7 @@ const App = () => {
   };
 
   return (
-    
+
     <div
       style={{
         display: "flex",
@@ -128,7 +128,7 @@ const App = () => {
           : "Step 2: People can create attestation to credibility of Greenpill Brasil"}
       </h2>
 
-      {!schemaUID && (
+      {/* {!schemaUID && (
         <>
           <h2>Register Schema</h2>
           <div>
@@ -160,40 +160,105 @@ const App = () => {
           </div>
           <button onClick={registerSchema}>Register Schema</button>
         </>
-      )}
-      {/* <div>
-      <h2>Create Attestation</h2>
-      <input
-        type="text"
-        name="freelancer"
-        value={attestationData.freelancer}
-        onChange={handleAttestationChange}
-        placeholder="Wallet of the person"
-      />
-      <input
-        type="text"
-        name="valueOfWork"
-        value={attestationData.valueOfWork}
-        onChange={handleAttestationChange}
-        placeholder="Value of work (1-100)"
-      />
-      <label htmlFor="recommendCheckbox">
-        Would you recommend this person?
-      </label>
-      <input
-        type="checkbox"
-        id="recommend"
-        name="recommend"
-        checked={attestationData.recommend}
-        onChange={handleAttestationChange}
-      />
+      )} */}
+      <div>
+        <h2>Create Attestation</h2>
+        <label htmlFor="personWallet">
+          Wallet
+        </label>
+        <input
+          type="text"
+          name="freelancer"
+          value={attestationData.freelancer}
+          onChange={handleAttestationChange}
+          placeholder="Wallet of the person"
+        />
+        <div>
+        <label htmlFor="valueOfWork">
+           Value
+          </label>
+          <input
+            type="text"
+            name="valueOfWork"
+            value={attestationData.valueOfWork}
+            onChange={handleAttestationChange}
+            placeholder="Value of work (1-100)"
+          />
+        </div>
 
-      
-      <button onClick={createAttestation}>Create Attestation</button>
+        <div>
+          <label htmlFor="recommendCheckbox">
+            Would you recommend Greenpill Brasil?
+          </label>
+          <input
+            type="checkbox"
+            id="recommend"
+            name="recommend"
+            checked={attestationData.recommend}
+            onChange={handleAttestationChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="discordNewMembers">
+            Did you see new members on Discord of Greenpill Brasil?
+          </label>
+          <input
+            type="checkbox"
+            id="discordNewMembers"
+            name="discordNewMembers"
+            checked={attestationData.discordNewMembers}
+            onChange={handleAttestationChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="charmverseNewMembers">
+            Did you see new members on Charmverse of Greenpill Brasil?
+          </label>
+          <input
+            type="checkbox"
+            id="charmverseNewMembers"
+            name="charmverseNewMembers"
+            checked={attestationData.charmverseNewMembers}
+            onChange={handleAttestationChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="newMembersWithWallet">
+           How many new members with wallet?
+          </label>
+          <input
+            type="text"
+            id="newMembersWithWallet"
+            name="newMembersWithWallet"
+            checked={attestationData.newMembersWithWallet}
+            onChange={handleAttestationChange}
+          />
+        </div>
+        <div>
+          <label htmlFor="areYouMember">
+           Are you a member of Greenpill Brasil or ReRe?
+          </label>
+          <input
+            type="checkbox"
+            id="areYouMember"
+            name="areYouMember"
+            checked={attestationData.areYouMember}
+            onChange={handleAttestationChange}
+          />
+        </div>
 
-      <h2>Revoke Attestation</h2>
-      <button onClick={revokeAttestation}>Revoke Attestation</button>
-    </div> */}
+
+
+        <div>
+          <button onClick={createAttestation}>Create Attestation</button>
+        </div>
+
+
+      <div>
+        <h2>Revoke Attestation</h2>
+        <button onClick={revokeAttestation}>Revoke Attestation</button>
+      </div>
+      </div>
     </div>
   );
 };
