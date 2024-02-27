@@ -6,6 +6,8 @@ Currently, two official plugins are available:
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<picture>
+<img src="https://github.com/greenpillbrasil/Greenpill-Brasil-Attestations-schemas/blob/main/src/assets/logo.png" width="150" heigth="150">
 
 # Greenpil Brasil 
 ## Testing Ethereum Attestation Service
