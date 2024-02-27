@@ -16,11 +16,11 @@ const App = () => {
   const { eas, schemaRegistry, currentAddress } = useEAS();
   // schemaUID is set when Freelancer register's their own reputation schema
   const [schemaUID, setSchemaUID] = useState<string>(
-    ""
+    "0xdcbcf37868242c38aa4e0617f6ba19d7f51054adb1e3b4fb0c1b038c58946e09"
   );
   // attestationUID is set when a client attests to the reputation schema
   const [attestationUID, setAttestationUID] = useState<string>(
-    ""
+    "0x8f7903475b67f0d342e93a9d9f6de9364fd117d708442a5ed3977c52758b7b19"
   );
   // attestationData is set by client in the frontend code
   const [attestationData, setAttestationData] = useState<AttestationData>({
@@ -57,7 +57,7 @@ const App = () => {
     if (!eas || !schemaUID) return;
     const schemaEncoder = new SchemaEncoder(SCHEMA);
     const encodedData = schemaEncoder.encodeData([
-      { name: "clientName", value: currentAddress, type: "string" },
+      { name: "personName", value: currentAddress, type: "string" },
       {
         name: "valueOfWork",
         value: attestationData.valueOfWork,
@@ -110,8 +110,8 @@ const App = () => {
       <h2>Sepolia Network</h2>
       <h2 style={{ textAlign: "center" }}>
         {!schemaUID
-          ? "Step 1: Freelancer registers a schema for their own reputation"
-          : "Step 2: Client creates attestation for Freelancer`s credibility"}
+          ? "Step 1: Greenpill Brasil registers a schema for their own reputation"
+          : "Step 2: Person creates attestation for credibility of Greenpill Brasil"}
       </h2>
 
       {!schemaUID && (
@@ -121,7 +121,7 @@ const App = () => {
             <strong>Schema Name:</strong> {SCHEMA_DETAILS.schemaName}
           </div>
           <div>
-            <strong>Person Name:</strong> {SCHEMA_DETAILS.clientName}
+            <strong>Person Name:</strong> {SCHEMA_DETAILS.personName}
           </div>
           <div>
             <strong>Value of Work:</strong> {SCHEMA_DETAILS.valueOfWork}
@@ -132,7 +132,7 @@ const App = () => {
           <button onClick={registerSchema}>Register Schema</button>
         </>
       )}
-
+      <div>
       <h2>Create Attestation</h2>
       <input
         type="text"
@@ -162,6 +162,7 @@ const App = () => {
 
       <h2>Revoke Attestation</h2>
       <button onClick={revokeAttestation}>Revoke Attestation</button>
+    </div>
     </div>
   );
 };
