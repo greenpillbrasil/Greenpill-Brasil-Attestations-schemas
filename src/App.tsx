@@ -8,6 +8,10 @@ type AttestationData = {
   freelancer: string;
   valueOfWork: number;
   recommend: boolean;
+  discordNewMembers: boolean;
+  newMembersWithWallet: boolean;
+  newMembersWithGitcoinPassport: boolean;
+  areYouMember: boolean;
 };
 /** @dev AFTER REGISTERING A SCHEMA, OR MAKING AN ATTESTATION
  * IF YOU REFRESH APP MAKE SURE TO PASTE IN SCHEMA/ATTESTATIONUID IN STATE VARIABLES OR ELSE APP WONT WORK
@@ -16,17 +20,22 @@ const App = () => {
   const { eas, schemaRegistry, currentAddress } = useEAS();
   // schemaUID is set when Freelancer register's their own reputation schema
   const [schemaUID, setSchemaUID] = useState<string>(
-    "0xdcbcf37868242c38aa4e0617f6ba19d7f51054adb1e3b4fb0c1b038c58946e09"
+    ""
   );
   // attestationUID is set when a client attests to the reputation schema
   const [attestationUID, setAttestationUID] = useState<string>(
-    "0x8f7903475b67f0d342e93a9d9f6de9364fd117d708442a5ed3977c52758b7b19"
+    ""
   );
   // attestationData is set by client in the frontend code
   const [attestationData, setAttestationData] = useState<AttestationData>({
     freelancer: "",
     valueOfWork: 0,
     recommend: false,
+    newMembersWithWallet: 0,
+    discordNewMembers: false,
+    charmverseNewMembers: false,
+    newMembersWithGitcoinPassport: 0,
+    areYouMember: false
   });
 
   const handleAttestationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -64,6 +73,11 @@ const App = () => {
         type: "uint8",
       },
       { name: "recommend", value: attestationData.recommend, type: "bool" },
+      { name: "discordNewMembers", value: attestationData.discordNewMembers, type: "bool" },
+      { name: "charmverseNewMembers", value: attestationData.charmverseNewMembers, type: "bool" },
+      { name: "newMembersWithWallet", value: attestationData.newMembersWithWallet, type: "uint8" },
+      { name: "newMembersWithGitcoinPassport", value: attestationData.newMembersWithGitcoinPassport, type: "uint8" },
+      { name: "areYouMember", value: attestationData.areYouMember, type: "bool" },
     ]);
 
     const transaction = await eas.attest({
@@ -110,7 +124,7 @@ const App = () => {
       <h2>Sepolia Network</h2>
       <h2 style={{ textAlign: "center" }}>
         {!schemaUID
-          ? "Step 1: Greenpill Brasil registers a schema to community driven reputation standard"
+          ? "Step 1: Greenpill Brasil registers a schema to community driven reputation standards"
           : "Step 2: People can create attestation to credibility of Greenpill Brasil"}
       </h2>
 
@@ -129,10 +143,25 @@ const App = () => {
           <div>
             <strong>Recommend:</strong> {SCHEMA_DETAILS.recommend}
           </div>
+          <div>
+            <strong>You saw new members on Discord</strong> {SCHEMA_DETAILS.discordNewMembers}
+          </div>
+          <div>
+            <strong>You saw new members on Charmverse</strong> {SCHEMA_DETAILS.charmverseNewMembers}
+          </div>
+          <div>
+            <strong>How many members now have a wallet</strong> {SCHEMA_DETAILS.newMembersWithWallet}
+          </div>
+          <div>
+            <strong>How many members now have a Gitcoin Passport</strong> {SCHEMA_DETAILS.newMembersWithGitcoinPassport}
+          </div>
+          <div>
+            <strong>Are you a member</strong> {SCHEMA_DETAILS.areYouMember}
+          </div>
           <button onClick={registerSchema}>Register Schema</button>
         </>
       )}
-      <div>
+      {/* <div>
       <h2>Create Attestation</h2>
       <input
         type="text"
@@ -158,11 +187,13 @@ const App = () => {
         checked={attestationData.recommend}
         onChange={handleAttestationChange}
       />
+
+      
       <button onClick={createAttestation}>Create Attestation</button>
 
       <h2>Revoke Attestation</h2>
       <button onClick={revokeAttestation}>Revoke Attestation</button>
-    </div>
+    </div> */}
     </div>
   );
 };
