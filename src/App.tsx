@@ -149,7 +149,7 @@ const App = () => {
         placeholder="Value of work (1-100)"
       />
       <label htmlFor="recommendCheckbox">
-        Would you recommend this freelancer?
+        Would you recommend this person?
       </label>
       <input
         type="checkbox"
