@@ -2,6 +2,7 @@ import { SchemaEncoder } from "@ethereum-attestation-service/eas-sdk";
 import React, { useState } from "react";
 import { SCHEMA, SCHEMA_DETAILS } from "./config/config";
 import { useEAS } from "./hooks/useEAS";
+import image from "./assets/logo.png";
 
 type AttestationData = {
   freelancer: string;
@@ -15,11 +16,11 @@ const App = () => {
   const { eas, schemaRegistry, currentAddress } = useEAS();
   // schemaUID is set when Freelancer register's their own reputation schema
   const [schemaUID, setSchemaUID] = useState<string>(
-    "0x5dd52dd5116bc3b40c166ecad9edfa039ffc7cf594d6513a57ea2637a492cbd6"
+    ""
   );
   // attestationUID is set when a client attests to the reputation schema
   const [attestationUID, setAttestationUID] = useState<string>(
-    "0x55c9f929a4e4de0b327ed1a196e8b1325d768eb58dc74276f845934e6288a538"
+    ""
   );
   // attestationData is set by client in the frontend code
   const [attestationData, setAttestationData] = useState<AttestationData>({
@@ -47,6 +48,7 @@ const App = () => {
     });
     // schemaRegistry returns uid from event emitted on registration
     const uid = await transaction.wait();
+    console.log("Schema UID: ", uid);
     setSchemaUID(uid);
   };
 
@@ -94,6 +96,7 @@ const App = () => {
   };
 
   return (
+    
     <div
       style={{
         display: "flex",
@@ -101,7 +104,10 @@ const App = () => {
         justifyContent: "center",
       }}
     >
-      <h1>Ethereum Attestation Service</h1>
+      <img src={image} width="81px" />
+      <h1>Greenpill Brasil</h1>
+      <h2>Testing Ethereum Attestation Service</h2>
+      <h2>Sepolia Network</h2>
       <h2 style={{ textAlign: "center" }}>
         {!schemaUID
           ? "Step 1: Freelancer registers a schema for their own reputation"
@@ -115,7 +121,7 @@ const App = () => {
             <strong>Schema Name:</strong> {SCHEMA_DETAILS.schemaName}
           </div>
           <div>
-            <strong>Client Name:</strong> {SCHEMA_DETAILS.clientName}
+            <strong>Person Name:</strong> {SCHEMA_DETAILS.clientName}
           </div>
           <div>
             <strong>Value of Work:</strong> {SCHEMA_DETAILS.valueOfWork}
@@ -133,7 +139,7 @@ const App = () => {
         name="freelancer"
         value={attestationData.freelancer}
         onChange={handleAttestationChange}
-        placeholder="Freelancer"
+        placeholder="Wallet of the person"
       />
       <input
         type="text"

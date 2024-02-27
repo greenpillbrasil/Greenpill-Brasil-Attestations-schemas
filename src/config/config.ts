@@ -6,7 +6,7 @@ export const SCHEMA_REGISTRY_ADDRESS =
   "0x0a7E2Ff54e76B8E6659aedc9103FB21c038050D0"; // Sepolia
 export const SCHEMA = "string clientName, uint8 valueOfWork, bool recommend";
 export const SCHEMA_DETAILS = {
-  schemaName: "Freelancer Reputation",
+  schemaName: "Greenpill Brasil Impact",
   clientName: "string (name of client attesting to you)",
   valueOfWork: "uint8 (value between 1-100)",
   recommend: "bool (yes or no)",
